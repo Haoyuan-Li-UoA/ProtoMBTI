@@ -1,6 +1,6 @@
 # ProtoMBTI: Prototype-Guided Retrieval-Augmented Reasoning for MBTI Inference from Text
 
-![method](E:\Python_Workspace\Python_Virtual_Environment\mbti\figures\method.png)
+![method](method.png)
 
 This repository contains the code implementation for the paper "ProtoMBTI: Prototype-Guided Retrieval-Augmented Reasoning for MBTI Inference from Text". The project focuses on personality type classification using the Myers-Briggs Type Indicator (MBTI) framework, leveraging prototype-based reasoning techniques to align with cognitive psychology principles.
 
