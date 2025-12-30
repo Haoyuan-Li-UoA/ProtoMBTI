@@ -1,0 +1,19 @@
+name: mbti
+channels:
+  - defaults
+dependencies:
+  - python>=3.9
+  - pip>=21.0
+  - pip:
+    - pandas
+    - numpy
+    - scikit-learn
+    - transformers
+    - peft
+    - torch
+    - tqdm
+    - ijson
+    - matplotlib
+    - requests
+    - faiss-cpu
+    - jupyter

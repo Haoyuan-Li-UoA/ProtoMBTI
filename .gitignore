@@ -1,0 +1,54 @@
+# Virtual Environment
+venv/
+.env/
+.env.local
+.env.*.local
+
+# Python
+*.pyc
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+.cache/
+
+# Data files
+# Ignore large raw data files but keep important dataset files
+!train.json
+!val.json
+!test.json
+*.csv
+*.txt
+*.pkl
+*.h5
+augmented_data/
+raw_data/
+
+# Model checkpoints
+*.pt
+*.ckpt
+models/
+checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# API Keys
+api_key.txt
+keys/
