@@ -146,6 +146,161 @@ The project generates various output files:
 3. **Reproducibility**: All random seeds are set to 42 for reproducibility.
 4. **Data Privacy**: Ensure you have appropriate permissions for any external data used.
 
+# MBTI Personality Type Prediction Experiment (In-Context Learning)
+
+This experiment uses Alibaba Cloud's Qwen2.5-72b-instruct model to predict MBTI personality types from user posts using In-Context Learning (ICL). It analyzes the accuracy of predictions across all four MBTI dimensions (E/I, S/N, T/F, J/P).
+
+## Datasets
+
+This project uses two public datasets:
+
+1. **Kaggle MBTI Dataset**: Contains posts from various forums with labeled MBTI types. This dataset is publicly available on Kaggle.
+2. **Pandora Dataset**: Another public dataset with posts and corresponding MBTI type labels.
+
+Both datasets are openly accessible and used for research purposes only.
+
+## Environment Setup
+
+### 1. Install Dependencies
+
+This project uses Python 3.7+. It is recommended to create a virtual environment before installing dependencies:
+
+```bash
+# Activate the virtual environment
+venv\Scripts\activate
+
+# Install dependencies
+pip install python-dotenv dashscope pandas
+```
+
+### 2. Configure API Key
+
+Create a `.env` file in the project root directory and add your DashScope API key:
+
+```
+DASHSCOPE_API_KEY=your-api-key-here
+```
+
+## Project Overview
+
+This experiment includes the following core workflows:
+
+1. **Data Preparation and Preprocessing**: Convert CSV datasets to JSON format, unify column names and data structures
+2. **Data Sampling**: Perform balanced sampling on both datasets (Kaggle and Pandora) to ensure uniform distribution across all MBTI dimensions
+3. **MBTI Dimension Prediction**: Use the Qwen model to directly predict the 4 MBTI dimensions
+4. **In-Context Learning**: Improve prediction accuracy through dataset-specific examples using ICL
+5. **Result Analysis**: Calculate dimension-wise accuracy and generate detailed prediction reports
+
+## Usage
+
+### 1. Data Preparation
+
+#### Data Conversion and Unification
+
+```bash
+# Convert CSV to JSON (if not already converted)
+python csv_to_json.py
+
+# Unify JSON column names
+python unify_json_columns.py
+```
+
+#### Data Sampling
+
+```bash
+# Sample the Kaggle dataset
+python data_processor.py
+```
+
+### 2. Run MBTI Prediction Experiments
+
+#### Direct Dimension Prediction
+
+```bash
+# Use Qwen model to directly predict MBTI dimensions
+python mbti_qwen_accuracy.py
+```
+
+#### In-Context Learning Prediction
+
+```bash
+# Select dataset-specific examples
+python select_examples.py
+
+# Update configuration file
+python update_config.py
+
+# Predict MBTI using ICL
+python mbti_icl_predict.py
+```
+
+### 3. Analyze Results
+
+```bash
+# Analyze MBTI distribution
+python analyze_mbti_distribution.py
+
+# Analyze prediction progress (in case of interruptions)
+python analyze_progress.py
+```
+
+## Project files
+
+```
+├── .env                       # Environment variables (API keys)
+├── .gitignore                 # Git ignore file
+├── config.py                  # Experiment configuration (ICL templates and examples)
+├── csv_to_json.py             # CSV to JSON conversion tool
+├── unify_json_columns.py      # JSON column name unification tool
+├── data_processor.py          # Data processing and sampling module
+├── mbti_qwen_accuracy.py      # Direct MBTI dimension prediction
+├── mbti_icl_predict.py        # MBTI prediction using ICL
+├── select_examples.py         # Dataset-specific example selection
+├── update_config.py           # Configuration file update tool
+├── analyze_mbti_distribution.py # MBTI distribution analysis
+├── analyze_progress.py        # Prediction progress analysis
+├── mbti_dataset_cleaned.csv   # Original MBTI dataset (CSV format)
+├── mbti_dataset_cleaned.json  # Cleaned MBTI dataset (JSON format)
+├── pandora_cleaned.json       # Pandora dataset
+├── mbti_accuracy_results.json # Prediction results
+└── README.md                  # Project documentation
+```
+
+## Core Features
+
+1. **Data Format Conversion**: CSV to JSON conversion while preserving data integrity
+2. **JSON Schema Unification**: Standardize column names and structures across different datasets
+3. **MBTI Dimension Decomposition**: Break down MBTI types into 4 independent dimensions for prediction
+4. **Balanced Data Sampling**: Ensure uniform distribution of MBTI dimensions in sampled data
+5. **In-Context Learning**: Improve prediction accuracy using dataset-specific examples
+6. **Resume Interrupted Tasks**: Support for resuming tasks from breakpoints
+7. **Multi-Dimensional Accuracy Analysis**: Calculate accuracy separately for E/I, S/N, T/F, J/P dimensions
+
+## Configuration
+
+The following configurations can be modified in the `config.py` file:
+
+- `ICL_TEMPLATE`: Prompt template for In-Context Learning
+- `KAGGLE_EXAMPLES`: Example posts from the Kaggle dataset
+- `PANDORA_EXAMPLES`: Example posts from the Pandora dataset
+
+## Notes
+
+1. Ensure your DashScope API key is valid, and set the international endpoint for users outside China
+2. Model predictions are for reference only and cannot replace professional MBTI tests
+3. Adjust sampling ratio and number of examples as needed to balance experiment effectiveness and runtime
+4. Large-scale data processing may take a long time; it is recommended to use the breakpoint resume feature
+
+## Results
+
+Experiment results include the following key metrics:
+
+- **Dimension-wise Accuracy**: Separate accuracy for E/I, S/N, T/F, and J/P dimensions
+- **Overall MBTI Type Accuracy**: Accuracy of predicting complete MBTI types
+- **Prediction Confidence**: Analysis of prediction confidence based on text similarity
+
+All results are saved in JSON format for easy analysis and visualization.
+
 ## Troubleshooting
 
 - **Missing Dependencies**: Ensure all packages are installed correctly using the requirements.yml file
@@ -155,7 +310,7 @@ The project generates various output files:
 
 ## License
 
-This project is intended for academic research purposes.
+This project is licensed under the MIT License.
 
 ## Contact
 
